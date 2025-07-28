@@ -1,0 +1,69 @@
+.insight-card {
+  background: linear-gradient(135deg, #FEF7FF 0%, #F0FDF4 100%);
+  border: 1px solid #E9D5FF;
+  border-radius: 12px;
+  padding: 24px;
+  margin: 24px 0;
+}
+
+.insight-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.insight-icon {
+  background: #8B5CF6;
+  color: white;
+  padding: 8px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.insight-header h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1F2937;
+  margin: 0;
+}
+
+.insight-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.insight-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.insight-bullet {
+  width: 6px;
+  height: 6px;
+  background: #8B5CF6;
+  border-radius: 50%;
+  margin-top: 8px;
+  flex-shrink: 0;
+}
+
+.insight-item p {
+  color: #374151;
+  line-height: 1.6;
+  margin: 0;
+  font-size: 15px;
+}
+
+@media (max-width: 768px) {
+  .insight-card {
+    padding: 18px;
+  }
+  
+  .insight-item p {
+    font-size: 14px;
+  }
+}
