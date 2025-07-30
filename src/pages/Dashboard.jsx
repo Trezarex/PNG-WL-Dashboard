@@ -124,7 +124,7 @@ const Dashboard = () => {
       <div className="map-section">
         <GeographicMap 
           data={locationData}
-          title="Program Coverage Across PNG"
+          title="Map Overview 🗺️"
           height={450}
         />
       </div>
