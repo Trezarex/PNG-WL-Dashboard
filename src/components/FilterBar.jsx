@@ -18,14 +18,19 @@ const FilterBar = ({
   ];
 
   const organizations = [
-    { value: 'all', label: 'All Organizations' },
-    { value: 'EOPO 1', label: 'EOPO 1 – Women’s Leadership' },
-    { value: 'EOPO 2', label: 'EOPO 2 – GBV Prevention' },
-    { value: 'EOPO 3', label: 'EOPO 3 – GBV Response' },
-    { value: 'EOPO 4', label: 'EOPO 4 – Financial Decision-Making' },
-    { value: 'Disability Equity', label: 'Disability Equity' },
-    { value: 'Men Boys Engagement', label: 'Men & Boys Engagement' },
-    { value: 'Communications Progress', label: 'Communications Progress' }
+    { value: 'IWDA with VfC and WBCA', label: 'IWDA with VfC and WBCA' },
+    { value: 'BCFW', label: 'BCFW' },
+    { value: 'EPF', label: 'EPF' },
+    { value: 'Femili PNG', label: 'Femili PNG' },
+    { value: 'Abt Associates', label: 'Abt Associates' },
+    { value: 'IWDA with NCFR', label: 'IWDA with NCFR' },
+    { value: 'Santos Foundation', label: 'Santos Foundation' },
+    { value: 'PIPP', label: 'PIPP' },
+    { value: 'Pacific Women Lead', label: 'Pacific Women Lead' },
+    { value: 'Office of Development for Women', label: 'Office of Development for Women' },
+    { value: 'DFCDR', label: 'DFCDR' },
+    { value: 'CIPE', label: 'CIPE' },
+    { value: 'UN Women', label: 'UN Women' }
   ];
 
 
