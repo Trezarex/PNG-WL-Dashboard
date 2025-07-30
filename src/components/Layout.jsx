@@ -40,7 +40,7 @@ const Layout = ({ children, onLogout }) => {
       {/* Sidebar */}
       <div className={`sidebar ${sidebarOpen ? 'sidebar-open' : ''}`}>
         <div className="sidebar-header">
-          <h2>Gender Equity Portal</h2>
+          <h2>PNG-WL-Dashboard</h2>
           <button 
             className="sidebar-close"
             onClick={() => setSidebarOpen(false)}

@@ -83,17 +83,6 @@ const StatsGrid = ({ data, title = "Performance Metrics" }) => {
           trend={15}
           delay={500}
         />
-        
-        <MetricCard
-          title="Investment"
-          value={`₹${(metrics.totalBudget / 100000).toFixed(1)}L`}
-          subtitle="Total budget"
-          icon={Calendar}
-          color="indigo"
-          progress={68}
-          trend={-2}
-          delay={600}
-        />
       </div>
     </div>
   );

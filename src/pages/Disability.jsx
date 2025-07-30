@@ -9,11 +9,37 @@ import { generateInsights, calculateSummaryStats, getFilteredData } from '../uti
 
 const Disability = () => {
   const [selectedPeriod, setSelectedPeriod] = useState('all');
+  const [selectedOrganization, setSelectedOrganization] = useState('all');
+  const [selectedLocation, setSelectedLocation] = useState('all');
 
-  const filteredData = useMemo(() => 
-    getFilteredData(disabilityData, selectedPeriod), 
-    [selectedPeriod]
-  );
+  // Filter data based on selected filters
+  const filteredData = useMemo(() => {
+    let filtered = disabilityData;
+    
+    // Filter by period
+    if (selectedPeriod !== 'all') {
+      const [period, year] = selectedPeriod.split('-');
+      filtered = filtered.filter(item => 
+        item.period === period && item.year === year
+      );
+    }
+    
+    // Filter by organization (program)
+    if (selectedOrganization !== 'all') {
+      filtered = filtered.filter(item => 
+        item.program === selectedOrganization
+      );
+    }
+    
+    // Filter by location
+    if (selectedLocation !== 'all') {
+      filtered = filtered.filter(item => 
+        item.location === selectedLocation
+      );
+    }
+    
+    return filtered;
+  }, [selectedPeriod, selectedOrganization, selectedLocation]);
 
   const stats = useMemo(() => 
     calculateSummaryStats(filteredData), 
@@ -57,6 +83,10 @@ const Disability = () => {
       <FilterBar 
         selectedPeriod={selectedPeriod}
         onPeriodChange={setSelectedPeriod}
+        selectedOrganization={selectedOrganization}
+        onOrganizationChange={setSelectedOrganization}
+        selectedLocation={selectedLocation}
+        onLocationChange={setSelectedLocation}
       />
 
       <div className="summary-grid">

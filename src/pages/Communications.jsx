@@ -3,13 +3,14 @@ import { BarChart3, Activity, TrendingUp, Users } from 'lucide-react';
 import SummaryCard from '../components/SummaryCard';
 import DataChart from '../components/DataChart';
 import InsightCard from '../components/InsightCard';
-import { eopoData, gbvData, disabilityData, menBoysData, financialData } from '../data/sampleData';
+import { eopoData, gbvData, gbvResponseData, disabilityData, menBoysData, financialData } from '../data/sampleData';
 
 const Communications = () => {
   // Combine all program data for communications overview
   const allData = useMemo(() => [
     ...eopoData,
-    ...gbvData, 
+    ...gbvData,
+    ...gbvResponseData,
     ...disabilityData,
     ...menBoysData,
     ...financialData

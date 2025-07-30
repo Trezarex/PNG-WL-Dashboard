@@ -4,16 +4,42 @@ import SummaryCard from '../components/SummaryCard';
 import DataChart from '../components/DataChart';
 import InsightCard from '../components/InsightCard';
 import FilterBar from '../components/FilterBar';
-import { financialData } from '../data/sampleData';
+import { gbvResponseData } from '../data/sampleData';
 import { generateInsights, calculateSummaryStats, getFilteredData } from '../utils/insights';
 
 const EOPO3 = () => {
   const [selectedPeriod, setSelectedPeriod] = useState('all');
+  const [selectedOrganization, setSelectedOrganization] = useState('all');
+  const [selectedLocation, setSelectedLocation] = useState('all');
 
-  const filteredData = useMemo(() => 
-    getFilteredData(financialData, selectedPeriod), 
-    [selectedPeriod]
-  );
+  // Filter data based on selected filters
+  const filteredData = useMemo(() => {
+    let filtered = gbvResponseData;
+    
+    // Filter by period
+    if (selectedPeriod !== 'all') {
+      const [period, year] = selectedPeriod.split('-');
+      filtered = filtered.filter(item => 
+        item.period === period && item.year === year
+      );
+    }
+    
+    // Filter by organization (program)
+    if (selectedOrganization !== 'all') {
+      filtered = filtered.filter(item => 
+        item.program === selectedOrganization
+      );
+    }
+    
+    // Filter by location
+    if (selectedLocation !== 'all') {
+      filtered = filtered.filter(item => 
+        item.location === selectedLocation
+      );
+    }
+    
+    return filtered;
+  }, [selectedPeriod, selectedOrganization, selectedLocation]);
 
   const stats = useMemo(() => 
     calculateSummaryStats(filteredData), 
@@ -21,7 +47,7 @@ const EOPO3 = () => {
   );
 
   const insights = useMemo(() => 
-    generateInsights(filteredData, "Financial Decision-Making"), 
+    generateInsights(filteredData, "GBV Response"), 
     [filteredData]
   );
 
@@ -57,6 +83,10 @@ const EOPO3 = () => {
       <FilterBar 
         selectedPeriod={selectedPeriod}
         onPeriodChange={setSelectedPeriod}
+        selectedOrganization={selectedOrganization}
+        onOrganizationChange={setSelectedOrganization}
+        selectedLocation={selectedLocation}
+        onLocationChange={setSelectedLocation}
       />
 
       <div className="summary-grid">

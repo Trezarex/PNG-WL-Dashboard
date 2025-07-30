@@ -4,16 +4,42 @@ import SummaryCard from '../components/SummaryCard';
 import DataChart from '../components/DataChart';
 import InsightCard from '../components/InsightCard';
 import FilterBar from '../components/FilterBar';
-import { menBoysData } from '../data/sampleData';
+import { financialData } from '../data/sampleData';
 import { generateInsights, calculateSummaryStats, getFilteredData } from '../utils/insights';
 
 const EOPO4 = () => {
   const [selectedPeriod, setSelectedPeriod] = useState('all');
+  const [selectedOrganization, setSelectedOrganization] = useState('all');
+  const [selectedLocation, setSelectedLocation] = useState('all');
 
-  const filteredData = useMemo(() => 
-    getFilteredData(menBoysData, selectedPeriod), 
-    [selectedPeriod]
-  );
+  // Filter data based on selected filters
+  const filteredData = useMemo(() => {
+    let filtered = financialData;
+    
+    // Filter by period
+    if (selectedPeriod !== 'all') {
+      const [period, year] = selectedPeriod.split('-');
+      filtered = filtered.filter(item => 
+        item.period === period && item.year === year
+      );
+    }
+    
+    // Filter by organization (program)
+    if (selectedOrganization !== 'all') {
+      filtered = filtered.filter(item => 
+        item.program === selectedOrganization
+      );
+    }
+    
+    // Filter by location
+    if (selectedLocation !== 'all') {
+      filtered = filtered.filter(item => 
+        item.location === selectedLocation
+      );
+    }
+    
+    return filtered;
+  }, [selectedPeriod, selectedOrganization, selectedLocation]);
 
   const stats = useMemo(() => 
     calculateSummaryStats(filteredData), 
@@ -21,7 +47,7 @@ const EOPO4 = () => {
   );
 
   const insights = useMemo(() => 
-    generateInsights(filteredData, "Men/Boys Engagement"), 
+    generateInsights(filteredData, "Financial Decision-Making"), 
     [filteredData]
   );
 
@@ -51,18 +77,22 @@ const EOPO4 = () => {
   return (
     <div className="page">
       <div className="page-header">
-        <h1>EOPO 4 - Men/Boys Engagement</h1>
-        <p>Engaging men and boys as allies in gender equity and social transformation</p>
+        <h1>EOPO 4 - Financial Decision-Making</h1>
+        <p>Empowering women and communities through financial literacy and decision-making skills</p>
       </div>
 
       <FilterBar 
         selectedPeriod={selectedPeriod}
         onPeriodChange={setSelectedPeriod}
+        selectedOrganization={selectedOrganization}
+        onOrganizationChange={setSelectedOrganization}
+        selectedLocation={selectedLocation}
+        onLocationChange={setSelectedLocation}
       />
 
       <div className="summary-grid">
         <SummaryCard
-          title="Men & Boys Engaged"
+          title="Individuals Empowered"
           value={stats.totalBeneficiaries.toLocaleString()}
           icon={Users}
           color="blue"

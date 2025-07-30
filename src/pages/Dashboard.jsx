@@ -6,7 +6,7 @@ import StatsGrid from '../components/StatsGrid';
 import InsightCard from '../components/InsightCard';
 import FilterBar from '../components/FilterBar';
 import { 
-  eopoData, gbvData, disabilityData, menBoysData, financialData,
+  eopoData, gbvData, gbvResponseData, disabilityData, menBoysData, financialData,
   performanceMetrics, geographicData, ageGroupData, impactInvestmentData
 } from '../data/sampleData';
 import { generateInsights, calculateSummaryStats, getFilteredData } from '../utils/insights';
@@ -14,21 +14,47 @@ import './Dashboard.css';
 
 const Dashboard = () => {
   const [selectedPeriod, setSelectedPeriod] = useState('all');
+  const [selectedOrganization, setSelectedOrganization] = useState('all');
+  const [selectedLocation, setSelectedLocation] = useState('all');
 
   // Combine all data
   const allData = useMemo(() => [
     ...eopoData,
-    ...gbvData, 
+    ...gbvData,
+    ...gbvResponseData,
     ...disabilityData,
     ...menBoysData,
     ...financialData
   ], []);
 
-  // Filter data based on selected period
-  const filteredData = useMemo(() => 
-    getFilteredData(allData, selectedPeriod), 
-    [allData, selectedPeriod]
-  );
+  // Filter data based on selected filters
+  const filteredData = useMemo(() => {
+    let filtered = allData;
+    
+    // Filter by period
+    if (selectedPeriod !== 'all') {
+      const [period, year] = selectedPeriod.split('-');
+      filtered = filtered.filter(item => 
+        item.period === period && item.year === year
+      );
+    }
+    
+    // Filter by organization
+    if (selectedOrganization !== 'all') {
+      filtered = filtered.filter(item => 
+        item.program === selectedOrganization
+      );
+    }
+    
+    // Filter by location
+    if (selectedLocation !== 'all') {
+      filtered = filtered.filter(item => 
+        item.location === selectedLocation
+      );
+    }
+    
+    return filtered;
+  }, [allData, selectedPeriod, selectedOrganization, selectedLocation]);
 
   // Calculate summary statistics
   const stats = useMemo(() => 
@@ -80,13 +106,17 @@ const Dashboard = () => {
   return (
     <div className="dashboard">
       <div className="dashboard-header">
-        <h1>Gender Equity Impact Dashboard</h1>
+        <h1>PNG-WL-Dashboard</h1>
         <p>Comprehensive overview of our programs and their impact</p>
       </div>
 
       <FilterBar 
         selectedPeriod={selectedPeriod}
         onPeriodChange={setSelectedPeriod}
+        selectedOrganization={selectedOrganization}
+        onOrganizationChange={setSelectedOrganization}
+        selectedLocation={selectedLocation}
+        onLocationChange={setSelectedLocation}
       />
 
       {/* Summary Cards */}
@@ -126,24 +156,6 @@ const Dashboard = () => {
           color="orange"
           trend={-3}
           delay={400}
-        />
-        <AnimatedCard
-          title="Satisfaction Rate"
-          value={`${avgSatisfaction}%`}
-          subtitle="Average beneficiary satisfaction"
-          icon={Award}
-          color="blue"
-          trend={7}
-          delay={500}
-        />
-        <AnimatedCard
-          title="Impact Score"
-          value={avgImpact}
-          subtitle="Average program effectiveness (out of 10)"
-          icon={TrendingUp}
-          color="indigo"
-          trend={5}
-          delay={600}
         />
       </div>
 
