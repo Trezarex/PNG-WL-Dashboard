@@ -20,6 +20,10 @@
   margin: 0;
 }
 
+.map-section {
+  margin-bottom: 32px;
+}
+
 .summary-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));

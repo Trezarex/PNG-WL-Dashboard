@@ -5,6 +5,7 @@ import EnhancedChart from '../components/EnhancedChart';
 import StatsGrid from '../components/StatsGrid';
 import InsightCard from '../components/InsightCard';
 import FilterBar from '../components/FilterBar';
+import GeographicMap from '../components/GeographicMap';
 import { 
   eopoData, gbvData, gbvResponseData, disabilityData, menBoysData, financialData,
   performanceMetrics, geographicData, ageGroupData, impactInvestmentData
@@ -118,6 +119,15 @@ const Dashboard = () => {
         selectedLocation={selectedLocation}
         onLocationChange={setSelectedLocation}
       />
+
+      {/* Geographic Map */}
+      <div className="map-section">
+        <GeographicMap 
+          data={locationData}
+          title="Program Coverage Across PNG"
+          height={450}
+        />
+      </div>
 
       {/* Summary Cards */}
       <div className="summary-grid">

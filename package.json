@@ -5,14 +5,27 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:3000": "vite --port 3000",
+    "dev:5281": "vite --port 5281",
+    "dev:8080": "vite --port 8080",
+    "dev:4000": "vite --port 4000",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "host": "node host.js",
+    "host:build": "npm run build && npm run host",
+    "host:ps": "powershell -ExecutionPolicy Bypass -File host-powershell.ps1",
+    "host:simple": "npm run build && cd dist && npx http-server -p 8000",
+    "host:public": "npm run host:build && node host-ngrok.js",
+    "ngrok": "node host-ngrok.js"
   },
   "dependencies": {
+    "leaflet": "^1.9.4",
     "lucide-react": "^0.528.0",
+    "ngrok": "^5.0.0-beta.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-leaflet": "^4.2.1",
     "react-router-dom": "^7.7.1",
     "recharts": "^3.1.0"
   },

@@ -14,6 +14,7 @@ import {
   Home
 } from 'lucide-react';
 import './Layout.css';
+import flagImage from '../assets/FLAG.png';
 
 const Layout = ({ children, onLogout }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -40,7 +41,20 @@ const Layout = ({ children, onLogout }) => {
       {/* Sidebar */}
       <div className={`sidebar ${sidebarOpen ? 'sidebar-open' : ''}`}>
         <div className="sidebar-header">
-          <h2>PNG-WL-Dashboard</h2>
+          <h2>
+            <img 
+              src={flagImage} 
+              alt="PNG Flag" 
+              style={{ 
+                width: '24px', 
+                height: '16px', 
+                marginRight: '8px', 
+                verticalAlign: 'middle',
+                display: 'inline-block'
+              }} 
+            />
+            PNG-WL-Dashboard
+          </h2>
           <button 
             className="sidebar-close"
             onClick={() => setSidebarOpen(false)}
