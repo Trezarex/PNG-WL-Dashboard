@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "start": "vite preview",
     "dev:3000": "vite --port 3000",
     "dev:5281": "vite --port 5281",
     "dev:8080": "vite --port 8080",
