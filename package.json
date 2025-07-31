@@ -21,7 +21,6 @@
     "ngrok": "node host-ngrok.js"
   },
   "dependencies": {
-    "serve": "^14.0.1",
     "leaflet": "^1.9.4",
     "lucide-react": "^0.528.0",
     "ngrok": "^5.0.0-beta.2",
@@ -29,7 +28,8 @@
     "react-dom": "^18.3.1",
     "react-leaflet": "^4.2.1",
     "react-router-dom": "^7.7.1",
-    "recharts": "^3.1.0"
+    "recharts": "^3.1.0",
+    "serve": "^14.2.4"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.1",
