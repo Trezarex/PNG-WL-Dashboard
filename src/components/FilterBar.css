@@ -8,8 +8,9 @@
     0 2px 4px -1px rgba(0, 0, 0, 0.06),
     0 0 0 1px rgba(255, 255, 255, 0.05);
   display: flex;
-  align-items: center;
-  gap: 24px;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -42,12 +43,23 @@
     0 0 0 1px rgba(255, 255, 255, 0.1);
 }
 
+.filter-content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  flex: 1;
+}
+
 .filter-group {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   position: relative;
   transition: all 0.3s ease;
+  flex: 1;
+  min-width: 200px;
+  max-width: 300px;
 }
 
 .filter-group:hover {
@@ -84,7 +96,7 @@
 }
 
 .filter-select {
-  padding: 10px 16px;
+  padding: 8px 12px;
   border: 2px solid #e5e7eb;
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.8);
@@ -95,7 +107,9 @@
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   backdrop-filter: blur(10px);
-  min-width: 140px;
+  min-width: 120px;
+  max-width: 200px;
+  flex: 1;
   appearance: none;
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
   background-position: right 12px center;
@@ -141,7 +155,69 @@
   }
 }
 
+.download-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: linear-gradient(135deg, #8B5CF6 0%, #EC4899 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+  white-space: nowrap;
+  min-width: fit-content;
+}
+
+.download-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(139, 92, 246, 0.4);
+  background: linear-gradient(135deg, #7C3AED 0%, #DB2777 100%);
+}
+
+.download-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(139, 92, 246, 0.3);
+}
+
+.download-button svg {
+  transition: transform 0.2s ease;
+}
+
+.download-button:hover svg {
+  transform: translateY(1px);
+}
+
 /* Responsive design with smooth transitions */
+@media (max-width: 1024px) {
+  .filter-bar {
+    gap: 12px;
+  }
+  
+  .filter-content {
+    gap: 12px;
+  }
+  
+  .filter-group {
+    min-width: 180px;
+    max-width: 250px;
+  }
+  
+  .filter-select {
+    min-width: 100px;
+    max-width: 180px;
+  }
+  
+  .download-button {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+}
+
 @media (max-width: 768px) {
   .filter-bar {
     padding: 16px 20px;
@@ -151,15 +227,29 @@
     border-radius: 12px;
   }
   
+  .filter-content {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+  
   .filter-group {
     flex-direction: column;
     align-items: flex-start;
     gap: 8px;
+    min-width: unset;
+    max-width: unset;
   }
   
   .filter-select {
     width: 100%;
     min-width: unset;
+    max-width: unset;
+  }
+  
+  .download-button {
+    align-self: flex-end;
+    margin-top: 8px;
   }
   
   .filter-bar::before {
@@ -173,6 +263,10 @@
     gap: 12px;
   }
   
+  .filter-content {
+    gap: 12px;
+  }
+  
   .filter-group label {
     font-size: 13px;
   }
@@ -180,5 +274,10 @@
   .filter-select {
     padding: 8px 12px;
     font-size: 13px;
+  }
+  
+  .download-button {
+    padding: 8px 12px;
+    font-size: 12px;
   }
 }
