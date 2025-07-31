@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "start": "vite preview",
+    "start": "serve -s dist -l $PORT",
     "dev:3000": "vite --port 3000",
     "dev:5281": "vite --port 5281",
     "dev:8080": "vite --port 8080",
@@ -21,6 +21,7 @@
     "ngrok": "node host-ngrok.js"
   },
   "dependencies": {
+    "serve": "^14.0.1",
     "leaflet": "^1.9.4",
     "lucide-react": "^0.528.0",
     "ngrok": "^5.0.0-beta.2",
